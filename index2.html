@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Valentine's Surprise 💝</title>
+    <style>
+        
+        body {
+            background: linear-gradient(135deg, #ffb7d5, #ff85b2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-fall {
+            position: absolute;
+            animation: fall 10s linear infinite;
+            font-size: 24px;
+            opacity: 0.7;
+        }
+
+        .chat-container {
+            background: #fff0f6;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 100, 150, 0.3);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .chat-header {
+            background: #ff85b2;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            color: white;
+            text-align: center;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-messages {
+            height: 500px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            clear: both;
+        }
+  button {
+        background: #ff4081;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+        font-size: 1rem;
+    }
+
+    button:hover {
+        background: #ff1a6a;
+        transform: scale(1.05);
+    }
+
+        .user-message {
+            background: #ffd1e6;
+            float: left;
+            color: #ff1493;
+            margin-left: 10px;
+        }
+
+        .bot-message {
+            background: #ffe5f0;
+            float: right;
+            color: #ff69b4;
+            margin-right: 10px;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+            clear: both;
+        }
+
+        .option-btn {
+            background: #ff85b2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            font-family: inherit;
+            margin-left: auto;
+        }
+
+        /* Heart Animation Styles */
+        .heart-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            display: none;
+        }
+
+        .heart-animation .heart {
+            position: absolute;
+            width: 20vw;
+            aspect-ratio: 1;
+            border-image: radial-gradient(var(--color) 69%, #0000 70%) 84.5%/50%;
+            clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+        }
+
+        :root {
+            --c-pink1: #ff85b2;
+            --c-pink2: #ff69b4;
+            --c-pink3: #ff1493;
+            --c-vanilla: #fff0f6;
+        }
+
+        .flying-heart {
+            position: fixed;
+            font-size: 40px;
+            animation: fly 2s ease-out forwards;
+            z-index: 3;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(0, -100vh) scale(0);
+                opacity: 0;
+            }
+        }
+        html,body{
+  height:100%
+}
+
+.bg_heart {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+ }
+
+.heart {
+    position: absolute;
+    top: -50%;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -m-transform: rotate(-45deg);
+    transform: rotate(-45deg)
+ }
+
+.heart:before {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 100%;
+}
+
+.heart:after {
+    position: absolute;
+    top: 0;
+    right: -50%;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 100%;
+}
+
+@-webkit-keyframes love {
+  0%{top:110%}
+}
+@-moz-keyframes love {
+  0%{top:110%}
+}
+@-ms-keyframes love {
+  0%{top:110%}
+}
+@keyframes love {
+  0%{top:110%}
+}
+
+
+
+  
+  .el {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background-color: #f45f42;
+    offset-distance: 100%;
+    offset-path: path('m 211.619 15.642 c -137.447 -2.4711 -264.638 212.481 105.926 435.341 c 0.405975 -0.730988 1.96899 -0.730988 2.375 0 c 382.518 -230.049 234.665 -451.64 92.626 -434.391 c -55.373 6.7245 -81.504 37.4565 -93.814 63.888 c -12.309 -26.4315 -38.44 -57.1635 -93.813 -63.888 c -4.438 -0.539301 -8.86601 -0.8702 -13.3 -0.95 l 0 -0.0001 Z');
+    animation: move 6s infinite ease-in-out;
+  }
+  
+  @keyframes move {
+    100% {
+      offset-distance: 0;
+    }
+  }
+  
+  .el:nth-of-type(1) {
+    animation-delay: 0s;
+  }
+  
+  .el:nth-of-type(2) {
+    animation-delay: 0.2s;
+    background-color: #f44242;
+  }
+  
+  .el:nth-of-type(3) {
+    animation-delay: .4s;
+    background-color: #ffb2b2;
+  }
+  
+  .el:nth-of-type(4) {
+    animation-delay: .6s;
+  }
+  
+  .el:nth-of-type(5) {
+    animation-delay: .8s;
+  }
+  
+  .el:nth-of-type(6) {
+    animation-delay: 1s;
+  }
+  
+  .el:nth-of-type(7) {
+    animation-delay: 1.2s;
+  }
+  
+  .el:nth-of-type(8) {
+    animation-delay: 1.4s;
+  }
+  
+  .el:nth-of-type(9) {
+    animation-delay: 1.6s;
+  }
+  
+  .el:nth-of-type(10) {
+    animation-delay: 1.8s;
+  }
+  
+  .el:nth-of-type(11) {
+    animation-delay: 2s;
+    background-color: #ffb2b2;
+  }
+  
+  .el:nth-of-type(12) {
+    animation-delay: 2.2s;
+  }
+  
+  .el:nth-of-type(13) {
+    animation-delay: 2.4s;
+    background-color: #ffb2b2;
+  }
+  
+  .el:nth-of-type(14) {
+    animation-delay: 2.6s;
+  }
+  
+  .el:nth-of-type(15) {
+    animation-delay: 2.8s;
+    background-color: #772f2f;
+  }
+  
+  .el:nth-of-type(16) {
+    animation-delay: 3s;
+  }
+  
+  .el:nth-of-type(17) {
+    animation-delay: 3.2s;
+  }
+  
+  .el:nth-of-type(18) {
+    animation-delay: 3.4s;
+  }
+  
+  .el:nth-of-type(19) {
+    animation-delay: 3.6s;
+    background-color: #ffb2b2;
+  }
+  
+  .el:nth-of-type(20) {
+    animation-delay: 3.8s;
+    background-color: #772f2f;
+  }
+  
+  .el:nth-of-type(21) {
+    animation-delay: 4s;
+  }
+  
+  .el:nth-of-type(22) {
+    animation-delay: 4.2s;
+  }
+  
+  .el:nth-of-type(23) {
+    animation-delay: 4.4s;
+  }
+  
+  .el:nth-of-type(24) {
+    animation-delay: 4.6s;
+  }
+  
+  .el:nth-of-type(25) {
+    animation-delay: 4.8s;
+    background-color: #772f2f;
+  }
+  
+  .el:nth-of-type(26) {
+    animation-delay: 5s;
+  }
+  
+  .el:nth-of-type(27) {
+    animation-delay: 5.2s;
+  }
+  
+  .el:nth-of-type(28) {
+    animation-delay: 5.4s;
+  }
+  
+  .el:nth-of-type(29) {
+    animation-delay: 5.6s;
+  }
+  
+  .el:nth-of-type(30) {
+    animation-delay: 5.8s;
+  }
+  
+  .el:nth-of-type(31) {
+    animation-delay: 6s;
+  }
+  
+  .el:nth-of-type(32) {
+    animation-delay: 6.2s;
+    background-color: #ffb2b2;
+  }
+  
+  p {
+    position: absolute;
+    top: 180px;
+    left: 220px;
+    font-size: 30px;
+    color: #f44242;
+    opacity: 0;
+  }
+  
+  .elo {
+    animation: elo 10s linear;
+  }
+  
+  .luvya {
+    animation: luvya 10s linear;
+    animation-fill-mode: forwards;
+  }
+  .fade-out {
+    opacity: 1;
+    transition: opacity 1.5s ease-out;
+}
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+  @keyframes elo {
+    40% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes luvya {
+    60% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  /* Center the animation container */
+.animation-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Adjust as needed */
+    height: 400px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Center and style the text */
+p {
+    position: absolute;
+    font-size: 30px;
+    color: #f44242;
+    opacity: 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* Ensure elements follow the path in the center */
+.el {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f45f42;
+    offset-distance: 100%;
+    animation: move 6s infinite ease-in-out;
+}
+
+@keyframes move {
+    100% {
+        offset-distance: 0;
+    }
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Heart Animation Container -->
+    <div class="heart-animation" id="heartAnimation">
+        <div class="heart heart--start js-heart-intro"></div>
+        <div class="heart heart--two js-heart-grow"></div>
+        <div class="heart heart--three js-heart-grow"></div>
+        <div class="heart heart--one js-heart-grow"></div>
+        <div class="heart heart--two js-heart-grow"></div>
+        <div class="heart heart--three js-heart-grow"></div>
+        <div class="heart heart--one js-heart-grow"></div>
+        <div class="heart heart--two js-heart-grow"></div>
+        <div class="heart heart--four js-heart-grow"></div>
+        <div class="heart heart--end-one heart--one js-heart-end"></div>
+    </div>
+
+    <div id="love">
+        <!-- <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div>
+        <div class="el"></div> -->
+        <!-- <p class="luvya">I love You</p> -->
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="heart">💝</div>
+            My Valentine Baby
+            <div class="heart">💝</div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="options" id="options"></div>
+    </div>
+
+    <script>
+        function startAnimation() {
+                // Create or select the main animation container
+                let container = document.querySelector(".animation-container");
+                if (!container) {
+                    container = document.createElement("div");
+                    container.classList.add("animation-container");
+                    document.body.appendChild(container);
+                }
+
+                // Select or create the <p> element
+                let textElement = document.querySelector("p");
+                if (!textElement) {
+                    textElement = document.createElement("p");
+                    container.appendChild(textElement);
+                }
+
+                // Set the text content
+                textElement.textContent = "I love you Chiuuuu ❤️";
+
+                // Create and append moving elements
+                for (let i = 0; i < 32; i++) {
+                    const el = document.createElement("div");
+                    el.classList.add("el");
+                    container.appendChild(el);
+                }
+
+                // Add animation classes to the text
+                textElement.classList.add("elo");
+
+                // Start the 'luvya' animation after 4 seconds
+                setTimeout(() => {
+                    textElement.classList.add("luvya");
+                }, 4000);
+            }
+        // Chat Flow Configuration
+       const chatFlow = {
+            start: {
+                messages: [
+                    { text: "chiuuuu 🐾💖", fromUser: true },
+                    { text: "chiuuuu majiii babdiiiiiiiiiii 🐾💞", fromUser: true },
+                    { text: "sonuuuuuuuuuuuuuuuuu 🐾💕", fromUser: true },
+                    { text: "majiii godddd babyyyyyyyyyy 🐾💗", fromUser: true },
+                    { text: "Aiktes Ka 💌💘", fromUser: true }
+                ],
+                responses: [
+                    { text: "nai 😾", next: "denial" },
+                    { text: "chup 🙊", next: "denial3" },
+                    { text: "bye 👋🥺", next: "denial4" },
+                    { text: "ha bolaa 😒", next: "start2" }
+                ]
+            },
+
+            denial4: {
+                messages: [
+                    { text: "babyy 🥺💕", fromUser: true },
+                    { text: "My loveee 🥺💘", fromUser: true },
+                    { text: "My sweet hearttt 🥺💖", fromUser: true },
+                    { text: "Sunno naa itni pyari ho tum, gussa doesn’t suit youuu 🥺💗", fromUser: true }
+                ],
+                responses: [
+                    { text: "nai 😾", next: "denial" },
+                    { text: "chup 🙊", next: "denial3" },
+                    { text: "bye 👋🥺", next: "denial4" },
+                    { text: "ha bolaa 😒", next: "start2" }
+                ]
+            },
+
+            denial3: {
+                messages: [
+                    { text: "My sweet malai sandwichhh 🍰💖", fromUser: true },
+                    { text: "Cutieeee Cat mother 🐱💕", fromUser: true },
+                    { text: "Aikun trr ghyaa naa plsss 🥺💗", fromUser: true },
+                    { text: "Please rani sarkarrr 👑💞", fromUser: true }
+                ],
+                responses: [
+                    { text: "nai 😾", next: "denial" },
+                    { text: "chup 🙊", next: "denial3" },
+                    { text: "bye 👋🥺", next: "denial4" },
+                    { text: "ha bolaa 😒", next: "start2" }
+                ]
+            },
+
+            start2: {
+                messages: [
+                    { text: "A reeeeeeeee sonuuuuuuuuuuuuuuuu 🥺💕", fromUser: true },
+                    { text: "My beautifulll wifeyyyyy🥺💘", fromUser: true },
+                    { text: "Sonuuu your eyes are deep, warm, and mesmerizing, like the richest brown pearls. 🤎🥺💖", fromUser: true },
+                    { text: "Ani tula mahit aahe ka? 🥺💕", fromUser: true },
+                    { text: "Kadhi kadhi trr i can’t take my eyes off you even if we are walking? 🥺💘", fromUser: true },
+                    { text: "Soo Soo beautifullll you are? 😻💏❤️💕", fromUser: true }
+                ],
+                responses: [
+                    { text: "🙄 Chup", next: "mineOnly" },
+                    { text: "Accha ji 🥺💕", next: "mineOnly" }
+                ]
+            },
+
+            mineOnly: {
+                messages: [
+                    { text: "Babyyy 💕", fromUser: true },
+                    { text: "WILL YOUUU? 💍🥺", fromUser: true },
+                    { text: "WILL YOUUUUU BE MYYYY? 💞", fromUser: true },
+                    { text: "WILL YOUUUUU BE MYYYY VALENTINEEE? 💖🌹", fromUser: true }
+                ],
+                responses: [
+                    { text: "yes 😾", next: "love" },
+                    { text: "Ho 🙊", next: "love" },
+                    { text: "ha 👋", next: "love" },
+                    { text: "Hav 💕", next: "love" }
+                ]
+            },
+
+            denial: {
+                messages: [
+                    { text: "a re 😢", fromUser: true },
+                    { text: "Aikkkkkk naaa chiuuuuuuuuuuuuuuu 💘", fromUser: true }
+                ],
+                responses: [
+                    { text: "nai 😾", next: "denial" },
+                    { text: "chup 🙊", next: "denial3" },
+                    { text: "bye 👋🥺", next: "denial4" },
+                    { text: "ha bolaa 😒", next: "start2" }
+                ]
+            },
+
+            love: {
+                messages: [
+                    { text: "HAAAAAAA BOLAAAAA!!! 💖💖💖", fromUser: true },
+                    { text: "I LOVE YOU SOOO MUCHHHH MY BABY 🥺💕", fromUser: true },
+                    { text: "You're my everything 🌸 My world 🌎 My happiness 🦋", fromUser: true },
+                    { text: "Happy Valentine's Day my love! 💝 Forever yours... 💑", fromUser: true }
+                ],
+                responses: []
+            }
+        };
+
+        // Application State
+        let currentState = 'start';
+        const chatMessages = document.getElementById('chatMessages');
+        const optionsDiv = document.getElementById('options');
+        const heartAnimation = document.getElementById('heartAnimation');
+
+        // Message Handling
+        function addMessage(text, fromUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${fromUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Options Handling
+        function showOptions(responses) {
+            optionsDiv.innerHTML = '';
+            responses.forEach(response => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+        
+                button.textContent = response.text;
+                button.onclick = () => {
+                    currentState = response.next;
+                    addMessage(response.text, false);
+                    setTimeout(startFlow, 1000);
+                };
+                optionsDiv.appendChild(button);
+            });
+        }
+
+        // Heart Animation Functions
+        function triggerHeartAnimation() {
+            const flyingHeart = document.createElement('div');
+            flyingHeart.className = 'flying-heart';
+            flyingHeart.innerHTML = '💖';
+            const chatRect = document.querySelector('.chat-container').getBoundingClientRect();
+            flyingHeart.style.left = `${chatRect.left + chatRect.width / 2 - 20}px`;
+            flyingHeart.style.top = `${chatRect.bottom - 40}px`;
+            document.body.appendChild(flyingHeart);
+
+            setTimeout(() => {
+                flyingHeart.remove();
+               
+            }, 2000);
+        }
+   function removeChatBox() {
+        const chatContainer = document.querySelector(".chat-container");
+
+        // Start fading out
+        chatContainer.style.transition = "opacity 1.5s ease-out";
+        chatContainer.style.opacity = "0";
+
+        // Wait for fade-out to complete, then remove the element
+        setTimeout(() => {
+            chatContainer.remove();
+            startAnimation();
+        }, 1500); // Match the transition duration
+    }
+
+    // Call `fadeOutChat()` to trigger fading
+
+        function startMainHeartAnimation() {
+            removeChatBox();
+           
+           
+
+
+        }
+
+        // Flow Control
+        function startFlow() {
+          const buttons = optionsDiv.querySelectorAll("button");
+
+buttons.forEach(button => {
+    button.disabled = true; // Ensures buttons are visible
+});
+            const state = chatFlow[currentState];
+            state.messages.forEach((msg, i) => {
+                setTimeout(() => {
+                    addMessage(msg.text, msg.fromUser);
+                    if (currentState === 'love' && i === state.messages.length - 1) {
+                        triggerHeartAnimation();
+                        startMainHeartAnimation()
+                    }
+                }, i * 2000);
+            });
+
+            setTimeout(() => {
+                if (state.responses.length > 0) {
+                    showOptions(state.responses);
+                }
+            }, state.messages.length * 1500 + 500);
+        }
+
+        // Initialization
+        startFlow();
+    </script>
+</body>
+
+</html>
